@@ -33,24 +33,55 @@ What do we need to show?
 
 ## 3.1. Data Dimensions
 
-![](img/data_dimensions.PNG)
+> **print(f'Number of rows: {df.shape[0]} ')**
+
+> Number of rows: 70000
+
+> **print(f'Number of columns: {df.shape[1]} ')**
+
+> Number of Columns: 13
+
 
 ## 3.2. Data Types
 
 ![](img/data_types.PNG)
 
-As we can see bellow, we have 2 data types: int64 and float64. It's important to explain that machine learning algorithms usually build a better learning with numerical data, this is one of the premises that we will assume.
+As we can see above, we have 2 data types: int64 and float64. It's important to explain that machine learning algorithms usually build a better learning with numerical data, this is one of the premises that we will assume.
 
 ## 3.3. Change Types
 
 The "id" column is a "int64" but, we won't execute any mathmatical operation because it is just a indentifying column. Therefore, we could change it to a categorical data or maybe to drop it, but let's to change the type to "object". Another point that we need to note is that our "age" column has an "days" format, so let's switch to the "age" format.
 
-![](img/change_types.PNG)
+#Converting the age to year format
+
+> df1 ['age_year'] = df1['age'].apply(lambda x: x/365)
+
+#age year convert
+
+> df1 ['age_year'] = df1['age_year'].astype(int)
+
+#Changing id type
+
+> df1 ['id'] = df1['id'].astype(int)
+
+![](img/change_types.png)
 
 ## 3.4. Statistical Descriptive
 
 ### 3.4.1. Numerical Attributes
-![](img/statistical_descriptive.PNG)
+
+ 
+|  | Attributes    | min     |  max   | range  | mean          | median | std         | skew     | kurtosis |
+|--| ------------- | ------- | ------ |------  |--------       |-----   |-----        |--------  |--------  |
+| 0| Age           | 10798.0 | 23713  | 12915  |  19468.875    | 19703  |   2467.2340 |  -0.3070 |  -0.8234 |
+| 1| Gender        | 1       | 2      | 1      |  1.34         | 1      |   0.470     |   0.630  |  -1.60   |
+| 2| Height        | 55      | 250    | 195    |  164.359      | 165    |   8.21      |  -0.630  |  7.943   |
+| 3| Weight        | 10      | 200    | 190    |  74.205       | 72     |   14.395    |  1.01    |  2.586   |
+| 4| AP_HI         | -150    | 16020  | 16170  |  128.81       | 120    |   154.01    |  85.296  |  7580.074| 
+| 5| AP_LO         | -70     | 11000  | 11070  |  96.630       | 80     |   188.471   |  32.114  |  1425.914|
+| 6| Age_year      | 29      | 64     | 35     |  52.840       | 53     |   6.766     |  -0.305  |  -0.8189 |
+     
+
 
 From this table, we can get some informations:
 
@@ -179,8 +210,16 @@ True However, the number of cases in obese people is less than the number of cas
  
  ## 7.2. Real Performance - Cross-Validation
  
- ![](img/machine_learning2.PNG)
- 
+|                  | Model                    | Accuracy      |  Standard Deviation 
+|  -------------   | -------------            | ------------- | --------        
+| 0                | Logistc regression       | 0.748         | 0.003           
+| 0                | Support Vector Machine   | 0.750         | 0.003           
+| 0                | Xboost Classifier        | 0.757         | 0.005           
+| 0                | K Nearest Neighbor       | 0.730         | 0.005           
+| 0                | LGBM Classifier          | 0.759         | 0.003           
+| 0                | Random Forest Classifier | 0.741         | 0.004           
+
+  
  ## 7.3. ROC Curve
  
  ![](img/roc_curve.PNG)
@@ -211,14 +250,20 @@ What did we get?
 - 5% above 50% = $500,00
 - 25% above 50% = $2500,00
 
-![](img/business1.PNG)
-![](img/business2.PNG)
-![](img/business3.PNG)
+| Model             | Best Score    |  Accuracy  |Kappa Score     | Recall | F1-Score | ROC AUC | Precision Score
+| -------------     | ------------- | --------   | -------        |------- | -------  | ------- | -------
+| LGBM Classifier   | 0.761         | 0.758      | 0.515          | 0.751  | 0.755    | 0.825   |0.762
 
-With a data set of 70000 people and each exam costing approximately $ 2500.00, our financial return will be, in the worst case, $ 35,000,000.00 and in the best case, $ 175,000,000.00
 
-# 9.0. DEPLOY MODEL TO PRODUCTION
+|                  |Confidente Interval  | Worst Scenario|  Best Scenario 
+|  -------------   | -------------       | ------------- | --------        
+| 0                | 0.00769             | 0.2461        | 0.231           
 
-To deploy the model, we use the flask framework. So, these are some of the predictions we got.
 
-![](img/deploy.PNG)
+|                  |Model   | Worst Scenario|  Best Scenario | Gain
+|  -------------   | -------------       | ------------- | --------        | --------
+| 0                | LGBM Classifier             | $ 35,000,000.00        | 175,000,000.00 - 140,000,000.00| 500%
+
+
+With a data set of 70000 people and each exam costing approximately \$ 2500.00, our financial return will be, in the worst case, \$ 35,000,000.00 and in the best case, \$ 175,000,000.00
+
