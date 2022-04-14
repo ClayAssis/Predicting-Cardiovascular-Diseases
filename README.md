@@ -232,7 +232,22 @@ Therefore, we will use the RandomSearchCV algorithm beacuse, the method describe
 
 In our best algorithm, we apply the technique to find the best parameters. Below, we can see its performance with the chosen parameters.
 
-![](img/machine_learning3.PNG)
+
+| Model             | Best Score    |  Accuracy  |Kappa Score     | Recall | F1-Score | ROC AUC | Precision Score
+| -------------     | ------------- | --------   | -------        |------- | -------  | ------- | -------
+| LGBM Classifier   | 0.761         | 0.758      | 0.515          | 0.751  | 0.755    | 0.825   |0.762
+
+
+|                  |Confidente Interval  | Worst Scenario|  Best Scenario 
+|  -------------   | -------------       | ------------- | --------        
+| 0                | 0.00769             | 0.2461        | 0.231           
+
+
+|                  |Model   | Worst Scenario|  Best Scenario | Gain
+|  -------------   | -------------       | ------------- | --------        | --------
+| 0                | LGBM Classifier             | $ 35,000,000.00        | 175,000,000.00 - 140,000,000.00| 500%
+
+
 ![](img/machine_learning4.PNG)
 
 # 8.0. BUSINESS PERFORMANCE
@@ -249,21 +264,6 @@ What did we get?
 - Precision = 76.04%
 - 5% above 50% = $500,00
 - 25% above 50% = $2500,00
-
-| Model             | Best Score    |  Accuracy  |Kappa Score     | Recall | F1-Score | ROC AUC | Precision Score
-| -------------     | ------------- | --------   | -------        |------- | -------  | ------- | -------
-| LGBM Classifier   | 0.761         | 0.758      | 0.515          | 0.751  | 0.755    | 0.825   |0.762
-
-
-|                  |Confidente Interval  | Worst Scenario|  Best Scenario 
-|  -------------   | -------------       | ------------- | --------        
-| 0                | 0.00769             | 0.2461        | 0.231           
-
-
-|                  |Model   | Worst Scenario|  Best Scenario | Gain
-|  -------------   | -------------       | ------------- | --------        | --------
-| 0                | LGBM Classifier             | $ 35,000,000.00        | 175,000,000.00 - 140,000,000.00| 500%
-
 
 With a data set of 70000 people and each exam costing approximately \$ 2500.00, our financial return will be, in the worst case, \$ 35,000,000.00 and in the best case, \$ 175,000,000.00
 
